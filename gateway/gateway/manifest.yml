@@ -1,0 +1,10 @@
+---
+applications:
+- name: gateway
+  path: /target/gateway-1.0.war
+  memory: 752M
+  buildpacks:
+  - java_buildpack_offline
+  env:
+    SERVER_PORT: "8080"
+    JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '{enabled: false}'

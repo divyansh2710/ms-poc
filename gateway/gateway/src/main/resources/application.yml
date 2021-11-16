@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: gateway-service  
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+              allowedOrigins: "*"
+              allowedMethods: "*"
+              allowedHeaders: "*"
+      routes:
+      - id: products
+        uri: http://localhost:8081
+        predicates:
+        - Path=/api/product-service/**
+      - id: cart
+        uri: http://localhost:8082
+        predicates:
+        - Path=/api/cart-service/**
+
+#spring:
+#  application:
+#    name: gateway-service   
+#  cloud:
+#    gateway:
+#      default-filters:
+#        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+#      globalcors:
+#        corsConfigurations:
+#          '[/**]':
+#              allowedOrigins: "*"
+#              allowedMethods: "*"
+#              allowedHeaders: "*"
+#      routes:
+#      - id: austria
+#        uri: http://localhost:8080/
+#        predicates:
+#        - Path=/get/contracts/AT
+#      - id: partners
+#        uri: http://localhost:8081/
+#        predicates:
+#        - Path=/get/partners/AT
+#      - id: poland
+#        uri: http://localhost:8082/
+#        predicates:
+#        - Path=/get/contracts/PL
